@@ -1,6 +1,10 @@
 ###################################################
 ## MINECRAFT INSTALLATION SCRIPT BELOW...
 ###################################################
+if [ $UID -ne 0 ]; then
+	echo "You must be the root user in order to run this."
+	exit 1
+fi
 #installation of core Java packages...
 yum -y install java-1.7.0-openjdk
 #for the icons...
