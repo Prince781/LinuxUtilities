@@ -73,6 +73,6 @@ if [ -e $BINLOC ]; then
     rm $BINLOC
 fi
 
-echo "java -Xmx1024M -Xms512M -cp $INSTALL/minecraft.jar net.minecraft.LauncherFrame" >> $BINLOC
+echo "java -Xmx1024M -Xms512M -cp $INSTALL/Minecraft.jar net.minecraft.LauncherFrame" >> $BINLOC
 chmod a+x $BINLOC
 
