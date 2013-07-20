@@ -45,13 +45,15 @@ cp $ICON16 /usr/share/icons/hicolor/16x16/apps/minecraft.png
 
 DESKTOP=/usr/share/applications/minecraft.desktop
 INSTALL=/usr/local/minecraft
-MINECRAFT='http://www.minecraft.net/download/minecraft.jar'
+# MINECRAFT='http://www.minecraft.net/download/minecraft.jar'
+MINECRAFT='https://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar'
+BINLOC=/usr/bin/minecraft
 
 mkdir $INSTALL
 cd $INSTALL
 wget $MINECRAFT
 
-if [ -e "$DESKTOP" ]; then
+if [ -e $DESKTOP ]; then
 	rm $DESKTOP
 fi
 
@@ -64,9 +66,10 @@ echo 'Terminal=false' >> $DESKTOP
 echo 'Categories=Game;' >> $DESKTOP
 echo 'Type=Application' >> $DESKTOP
 
-if [ -d "/usr/lib/jvm/jre-1.7.0-openjdk.x86_64/lib/amd64" ]; then
-	echo "export LD_LIBRARY_PATH=\"/usr/lib/jvm/jre-1.7.0-openjdk.x86_64/lib/amd64\"" >> /usr/bin/minecraft
+if [ -e $BINLOC ]; then
+    rm $BINLOC
 fi
-echo "java -Xmx1024M -Xms512M -cp $INSTALL/minecraft.jar net.minecraft.LauncherFrame" >> /usr/bin/minecraft
-chmod a+x /usr/bin/minecraft
+
+echo "java -Xmx1024M -Xms512M -cp $INSTALL/minecraft.jar net.minecraft.LauncherFrame" >> $BINLOC
+chmod a+x $BINLOC
 
