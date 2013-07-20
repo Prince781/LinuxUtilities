@@ -10,7 +10,7 @@ switchloc=/sys/kernel/debug/vgaswitcheroo/switch
 function display_help(){
 	tb=$'\t'
 	nwl=$'\n'
-	echo "VGASwitch - Version 0.1 beta"
+	echo "VGASwitch - Version 0.1"
 	echo "Usage: $0 [ARG1] [ARG2]..."
 	echo " VGASwitch is a utility for aiding in the simplicity in switching graphics"
 	echo " cards, often on a laptop, in which there is the presence of both an"
@@ -63,9 +63,10 @@ function display_help(){
 	echo "      WARNING: This is a BAD example. Doing this will result in a blank"
 	echo "      display. Be sure to turn off the GPU that is no longer the default"
 	echo "      AFTER it is disconnected with the video outputs (once a restart has "
-	echo "      occurred."
+	echo "      occurred)."
 	echo "============================== Miscellaneous ==============================="
 	echo " --help       - Display this text."
+	echo " --switchloc  - Display the location of VGASwitcheroo."
 	if [ $BASH_SOURCE == "/usr/bin/vgaswitch" ]; then
 		echo " --uninstall  - Remove this program from /usr/bin/."
 	else
@@ -83,6 +84,10 @@ if [ -e $switchloc ]; then
 			"--help") 
 				display_help
 				ecval=true
+			;;
+			"--switchloc")
+			    echo $switchloc
+			    ecval=true
 			;;
 			"--install")
 				if [ $BASH_SOURCE == "/usr/bin/vgaswitch" ]; then
@@ -105,6 +110,6 @@ if [ -e $switchloc ]; then
 		fi
 	done
 else 
-	echo "Apparently, the vgaswitcheroo capability is nonexistent due to either an unsupported card or otherwise missing functionality."
+	echo "Apparently, the VGASwitcheroo capability is nonexistent due to either an unsupported card or otherwise missing functionality."
 	exit 0
 fi
