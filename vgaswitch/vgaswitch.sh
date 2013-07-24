@@ -66,6 +66,7 @@ function display_help(){
 	echo "      occurred)."
 	echo "============================== Miscellaneous ==============================="
 	echo " --help       - Display this text."
+	echo " --status     - List all GPUs on system and their power states."
 	echo " --switchloc  - Display the location of VGASwitcheroo."
 	if [ $BASH_SOURCE == "/usr/bin/vgaswitch" ]; then
 		echo " --uninstall  - Remove this program from /usr/bin/."
@@ -86,8 +87,12 @@ if [ -e $switchloc ]; then
 				ecval=true
 			;;
 			"--switchloc")
-			    echo $switchloc
-			    ecval=true
+				echo $switchloc
+				ecval=true
+			;;
+			"--status")
+				cat $switchloc
+				ecval=true
 			;;
 			"--install")
 				if [ $BASH_SOURCE == "/usr/bin/vgaswitch" ]; then
