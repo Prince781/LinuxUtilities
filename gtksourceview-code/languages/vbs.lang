@@ -20,7 +20,8 @@
 		<style id="special-constant" _name="Special Constant" map-to="def:special-constant"/>
 		<style id="builtin" _name="Built In" map-to="def:builtin"/>
 		<style id="operator" _name="Operator" map-to="def:operator"/>
-		<style id="number" _name="Number" map-to="def:floating-point"/>
+		<style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
+		<style id="decimal" _name="Decimal" map-to="def:decimal"/>
 	</styles>
 	
 	<default-regex-options case-sensitive="false"/>
@@ -108,7 +109,9 @@
 		
 		<context id="operators" style-ref="operator">
 			<match>[\+\-\^\*\/\\\&amp;\=\&lt;\&gt;]</match>
-			<!--
+		</context>
+		
+		<context id="word-operators" style-ref="operator">
 			<keyword>is</keyword>
 			<keyword>not</keyword>
 			<keyword>mod</keyword>
@@ -117,7 +120,14 @@
 			<keyword>xor</keyword>
 			<keyword>eqv</keyword>
 			<keyword>imp</keyword>
-			-->
+		</context>
+		
+		<context id="floating-points" style-ref="floating-point">
+			<match>(?&lt;![\w\.])[0-9]+[\.][0-9]+(?![\w\.])</match>
+		</context>
+		
+		<context id="decimals" style-ref="decimal">
+			<match>(?&lt;![\w\.])[0-9]+(?![\w\.])</match>
 		</context>
 		
 		<!-- Main Context -->
@@ -130,6 +140,9 @@
 				<context ref="special-constants"/>
 				<context ref="builtins"/>
 				<context ref="operators"/>
+				<context ref="word-operators"/>
+				<context ref="floating-points"/>
+				<context ref="decimals"/>
 			</include>
 		</context>
 		
