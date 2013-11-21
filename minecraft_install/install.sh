@@ -76,3 +76,5 @@ fi
 echo "java -jar $INSTALL/Minecraft.jar" >> $BINLOC
 chmod a+x $BINLOC
 
+/usr/bin/gtk-update-icon-cache # update icon cache
+
