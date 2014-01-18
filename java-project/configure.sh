@@ -15,9 +15,16 @@ for arg in "$@"; do
 		for fld in ${ds[@]}; do
 			if [ ! -e $fld ]; then mkdir $fld; fi
 		done
+		# populate src
+		if [ ! -e src/com ]; then mkdir src/com; fi
+		if [ ! -e src/manifest.txt ]; then touch src/manifest.txt; fi
 		;;
-	"--help" | "-h" | "*") # default
+	"--help" | "-h") # default
 		display_help
+		;;
+	*)
+		printf "Unknown option. Pass --help or -h for more information.\n"
+		exit 1
 		;;
 	esac
 done
