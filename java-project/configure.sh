@@ -13,7 +13,7 @@ function display_help() {
 for arg in "$@"; do
 	case $arg in
 	"--initial" | "-i") # set up initial hierarchy
-		ds=(src bin src/com)
+		ds=(src src/com bin lib)
 		for fld in ${ds[@]}; do
 			if [ ! -e $fld ]; then mkdir $fld; fi
 		done
