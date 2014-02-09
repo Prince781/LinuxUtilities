@@ -6,7 +6,7 @@ if [ $UID -ne 0 ]; then
 	exit 1
 fi
 #installation of core Java packages...
-# yum -y install java-1.7.0-openjdk java-1.8.0-openjdk
+# dnf -y install java-1.7.0-openjdk java-1.8.0-openjdk
 #for the icons...
 #ICON512=icons/512/minecraft.png
 ICON256=lib/mcrft_icons/256/minecraft.png
