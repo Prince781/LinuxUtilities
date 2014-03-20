@@ -43,14 +43,14 @@ for arg in "$@"; do
 done
 
 if [ $manifest_level -gt 0 ]; then # set up manifest
-	classes=". `find lib -type f -name '*.jar' | tr '\n' ' '`"
+	classes=$(find lib -type f -name '*.jar' | tr '\n' ' ')
 	echo "Manifest-Version: 1.0" > $mf_file # erase from start
 	printf "Name: %s\n" "`basename "$(pwd)"`" >> $mf_file
 	if [ $manifest_level -gt 1 ]; then
 		printf "Main-Class: %s\n" $mf_classname >> $mf_file
 	fi
 	printf "Class-Path:" >> $mf_file
-	printf " %s\n" "`echo $classes | fold -s -w 72 | tr '\n' '\n '`" >> $mf_file
+	printf " %s\n" "`echo $classes | fold -s -w 72 | tr '\n' '?' | sed -e 's/\?/\n /g'`" >> $mf_file
 fi
 
 if [ $# -eq 0 ]; then display_help; fi
