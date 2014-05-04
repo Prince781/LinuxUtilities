@@ -21,15 +21,20 @@
 int main(int argc, char **argv) {
 	int c;
 	
-	while ((c=getopt_long(argc, argv, "t:",
+	while ((c=getopt_long(argc, argv, "h::t:",
 		long_options, &option_i)) != -1)
 		switch (c) {
 			case 't':
-				printf("You entered %s.\n", optarg);
+				timeout(atof(optarg)); // run our timeout function
 				break;
+			case 'h':
 			default:
+				display_help();
 				return 0;
 		}
 	
+	if (option_i == 0)
+		display_help();
+
 	return 0;
 }

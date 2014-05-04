@@ -18,7 +18,13 @@ time_t timeout(double seconds) {
 	time_t start, end;
 	time(&start); // initialize time
 	
-	while (difftime(start, time(&end)) < seconds);
+	double diff, last_diff = 0;
+
+	while ((diff = difftime(time(&end), start)) < seconds)
+		if (diff - last_diff > 0) {
+			last_diff = diff;
+			printf("Time: %d / %d\n", (int) diff, (int) seconds);
+		}
 
 	// timed out
 
