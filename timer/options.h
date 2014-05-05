@@ -20,13 +20,15 @@
 
 static struct option long_options[] = {
 	{"help", no_argument, 0, 'h'},
+	{"stopwatch", no_argument, 0, 's'},
 	{"timeout", required_argument,	0, 't'},
 	{0, 0, 0, 0}
 };
 
 static char *opt_descr[] = {
-	"Prints out this help message.",
-	"Creates a timed response that occurs after [N] seconds. Useful\n\
+	"\tPrints out this help message.",
+	"Starts an interactive stopwatch.",
+	"\tCreates a timed response that occurs after [N] seconds. Useful\n\
 	\t\t\tfor timing something."
 };
 
@@ -43,8 +45,6 @@ static void display_help() {
 	
 	// timeout option
 	for (int i=0; long_options[i].name != 0; i++)
-		printf("\t--%s | -%c\t\t%s\n", long_options[i].name,
+		printf("\t--%s | -%c\t%s\n", long_options[i].name,
 			long_options[i].val, opt_descr[i]);
-	
-	
 }

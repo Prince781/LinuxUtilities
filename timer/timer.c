@@ -19,13 +19,17 @@
 #include "options.h" // glorious POSIX option parsing
 
 int main(int argc, char **argv) {
-	int c;
+	int c, n = 0;
 	
-	while ((c=getopt_long(argc, argv, "h::t:",
+	while ((c=getopt_long(argc, argv, "h::s::t:",
 		long_options, &option_i)) != -1)
 		switch (c) {
+			case 's':
+				stopwatch();
+				break;
 			case 't':
 				timeout(atof(optarg)); // run our timeout function
+				n++;
 				break;
 			case 'h':
 			default:
@@ -33,7 +37,7 @@ int main(int argc, char **argv) {
 				return 0;
 		}
 	
-	if (option_i == 0)
+	if (n == 0)
 		display_help();
 
 	return 0;
