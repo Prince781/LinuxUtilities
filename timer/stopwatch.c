@@ -25,13 +25,16 @@ time_t timeout(double seconds) {
 	while ((diff = difftime(time(&end), start)) < seconds) {
 		if (diff - last_diff > 0) {
 			last_diff = diff;
-			printf("Time: %ds / %ds\n", (int) diff, (int) seconds);
+			char del[100];
+			for (int i=0; i<100; i++) del[i] = '\b';
+			
+			printf("%s", del);
+			printf("Time: %ds / %ds", (int) diff, (int) seconds);
 			fflush(stdout);
-			// printf("\b\b\b\b");
 		} sleep(1);
 	}
 
-	// timed out
+	printf("\n"); // timed out
 
 	return end;
 }
@@ -42,13 +45,16 @@ void stopwatch() {
 	int c;
 	
 	while ((c = getchar()) != EOF) {
-		if (c == 'c')
-			printf("Breakpoint entered.");
+		if (c == 'c') {
+			printf("Breakpoint entered.\n");
+			time(&start); // reset start time
+			diff = last_diff = 0;
+		}
 		
 		diff = difftime(time(NULL), start);
 		if (diff - last_diff > 0) {
 			last_diff = diff;
-			printf("Time: %f\n", (float) diff); // print elapsed
+			printf("Time: %d\n", (int) diff); // print elapsed
 		}
 
 		fflush(stdin);

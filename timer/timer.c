@@ -26,6 +26,7 @@ int main(int argc, char **argv) {
 		switch (c) {
 			case 's':
 				stopwatch();
+				n++;
 				break;
 			case 't':
 				timeout(atof(optarg)); // run our timeout function
