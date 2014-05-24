@@ -28,8 +28,8 @@ static struct option long_options[] = {
 static char *opt_descr[] = {
 	"\tPrints out this help message.",
 	"Starts an interactive stopwatch.",
-	"\tCreates a timed response that occurs after [N] seconds. Useful\n\
-	\t\t\tfor timing something."
+	"\tCreates a timed response that occurs after [N]\n\
+	\t\t\tseconds. Useful for timing something."
 };
 
 static int option_i; // option index
