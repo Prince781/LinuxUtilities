@@ -15,6 +15,7 @@
 #include "stopwatch.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 time_t timeout(double seconds) {
 	time_t start, end;
@@ -25,13 +26,17 @@ time_t timeout(double seconds) {
 	while ((diff = difftime(time(&end), start)) < seconds) {
 		if (diff - last_diff > 0) {
 			last_diff = diff;
-			char del[100];
-			for (int i=0; i<100; i++) del[i] = '\b';
 			
-			printf("%s", del);
+			{ // this block of code is written by Ben Iofel
+				char *clear = calloc(100, 1);
+				printf("%s", (char*)memset(clear, '\b', 99));
+				free(clear);
+			}
+
 			printf("Time: %ds / %ds", (int) diff, (int) seconds);
 			fflush(stdout);
-		} sleep(1);
+		}
+		sleep(1);
 	}
 
 	printf("\n"); // timed out
@@ -57,6 +62,6 @@ void stopwatch() {
 			printf("Time: %d\n", (int) diff); // print elapsed
 		}
 
-		fflush(stdin);
+		fflush(stdout);
 	}
 }

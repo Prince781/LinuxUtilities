@@ -14,9 +14,23 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "stopwatch.h" // unique stopwatch utilities
 #include "options.h" // glorious POSIX option parsing
+
+/**
+ * Displays all help information/messages.
+ */
+void display_help() {
+	printf("Timer - v%d.%d\n\n", VERSION_MAJOR, VERSION_MINOR);
+	printf("Usage: timer [OPTIONS] ...\n");
+	
+	// timeout option
+	for (int i=0; long_options[i].name != 0; i++)
+		printf("\t--%s | -%c\t%s\n", long_options[i].name,
+			long_options[i].val, opt_descr[i]);
+}
 
 int main(int argc, char **argv) {
 	int c, n = 0;

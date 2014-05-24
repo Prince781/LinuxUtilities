@@ -34,17 +34,6 @@ static char *opt_descr[] = {
 
 static int option_i; // option index
 
-static bool TIMER_DEBUG = false;
+// static bool TIMER_DEBUG = false;
 
-/**
- * Displays all help information/messages.
- */
-static void display_help() {
-	printf("Timer - v%d.%d\n\n", VERSION_MAJOR, VERSION_MINOR);
-	printf("Usage: timer [OPTIONS] ...\n");
-	
-	// timeout option
-	for (int i=0; long_options[i].name != 0; i++)
-		printf("\t--%s | -%c\t%s\n", long_options[i].name,
-			long_options[i].val, opt_descr[i]);
-}
+

@@ -18,11 +18,11 @@
 /**
  * Starts a timer from NOW to NOW+seconds.
  */
-extern time_t timeout(double seconds);
+time_t timeout(double seconds);
 
 /**
  * Starts an interactive stopwatch, which may be cancelled at any time by the
  * EOF character. Specific breakpoints in the stopwatch can be controlled by
  * entering "c".
  */
-extern void stopwatch();
+void stopwatch(void);
