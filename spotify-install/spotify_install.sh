@@ -27,8 +27,7 @@ spectool -g "spotify-client.spec" && sudo yum-builddep "spotify-client.spec"
 
 env QA_RPATHS=$((0x10|0x08)) rpmbuild -bb "spotify-client.spec"
 
-echo "Install the Spotify package? Enter \"y\" to install, or nothing otherwise."
-
+printf "Install the Spotify package? (y/n): "
 read toInstall
 
 if [ $toInstall == "y" ]; then
