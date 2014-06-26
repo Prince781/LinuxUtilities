@@ -3,7 +3,7 @@
 
 if [ $UID -ne 0 ]; then
 	echo "You must be root to run this."
-	return 1
+	exit 1
 fi
 
 
