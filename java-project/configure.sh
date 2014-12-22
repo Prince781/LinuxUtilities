@@ -10,7 +10,7 @@ function display_help() {
 \tSets up an initial manifest file, with optional class name.\n"
 }
 
-mf_file="manifest.mf"
+mf_file="META-INF/MANIFEST.MF"
 manifest_level=0
 mf_classname=""
 
@@ -22,7 +22,7 @@ for arg in "$@"; do
 			if [ ! -e $fld ]; then mkdir $fld; fi
 		done
 		# populate src
-		if [ ! -e $mf_file ]; then touch $mf_file; fi
+		if [ ! -e $mf_file ]; then install -D /dev/null $mf_file; fi
 		;;
 	"--manifest" | "-m") # set up manifest file
 		manifest_level=$(($manifest_level + 1))
