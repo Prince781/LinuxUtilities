@@ -54,7 +54,7 @@ cd $INSTALL
 if [ ! -e /usr/bin/wget ]; then
     yum -y install wget
 fi
-wget $MINECRAFT
+wget $MINECRAFT --no-check-certificate
 
 if [ -e $DESKTOP ]; then
 	rm $DESKTOP
