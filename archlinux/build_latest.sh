@@ -9,7 +9,12 @@ pkg=$(basename $1 2>/dev/null)
 clone_new_pkg=
 
 if [ ! -e /bin/asp ]; then
-    printf "Please install extra/asp\n"
+    printf "Please install asp\n"
+    exit 1
+fi
+
+if [ ! -e /bin/git ]; then
+    printf "Please install git\n"
     exit 1
 fi
 
