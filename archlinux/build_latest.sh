@@ -35,9 +35,12 @@ if [ ! -d $pkg ]; then
 fi
 
 cd $pkg
-asp update
-git reset --hard
-git pull
+
+if [[ $clone_new_pkg != y ]]; then
+    asp update
+    git reset --hard
+    git pull
+fi
 
 printf "Now edit the PKGBUILD again...\n"
 pkgbuild_array=()
